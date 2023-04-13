@@ -1,0 +1,22 @@
+section .data ;secao onde ficam as constantes
+    
+    frase db "Oulá Peile"
+
+section .bss ;secao aonde ficam as variaveis
+
+section .text ;secao aonde ficam as funções
+    global _start ; <<----------- va para a funcao start
+
+_start: ;esta e a  funcao principal comeca com _ e acaba com :
+
+        mov rax, 1 ; na tabela 1 é escrever (sys_write)
+        mov rdi, 1 ; a saida pode ser 0, entrada, 1 saida ou 2 erro
+        mov rsi, frase ; Ponteiro para o buffer
+        mov rdx, 11 ; tamanho da informação que está no buffer
+        syscall ; chame o sistema operacional para executar 
+        
+        mov rax, 60 ; na tabela é sair do programa
+        mov rdi, 0 ; 0 tudo ok, 1 erro
+        syscall
+        
+        
